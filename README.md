@@ -65,3 +65,7 @@ Wanted to do a solution with swapping the actual vector elements itself, but the
 ### Runtime and Memory:
 
 The Memory usage was around the same, but runtime would vary between apparently 0ms - 21 ms, with 3 runs at 4ms, 1 run at 0ms, 1 run at 21ms, 1 run at 18ms.
+
+
+## Time spent to solve:
+15 min

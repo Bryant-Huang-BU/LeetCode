@@ -48,7 +48,7 @@ public:
 
 ## Runtime and Memory Usage:
 
-![Remove Duplicates from Sorted Array.png](Bryant%E2%80%99s%20Leetcode%20Notes%201307ee85a6024e17a6d751358adf910b/Remove_Duplicates_from_Sorted_Array.png)
+![Remove Duplicates from Sorted Array.png](images/Remove_Duplicates_from_Sorted_Array.png)
 
 ## Notes:
 

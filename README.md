@@ -128,3 +128,79 @@ Would’ve liked to known how I could’ve made memory usage more efficient, but
 ## Time Spent to Solve:
 
 12 min
+# Longest Substring Without Repeating Characters (Medium)
+
+## Problem:
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+## Found Solution:
+
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxlen = 0, currlen = 0, size = s.size();
+        if (size == 1) {
+            return 1;
+        }
+        else if (size == 0) {
+            return 0;
+        }
+        string sub = "";
+        for (int i = 0; i < size; i++) {
+            for (int j = i; j < size; j++) {
+                if (find(sub, s[j])) {
+                    
+                    break;
+                    //cout << "hit replica" << endl;
+                }
+                else {
+                    sub += s[j];
+                    //cout << "sub: " << sub << endl;
+                    currlen++;
+                }
+            }
+            if (currlen > maxlen) {
+                maxlen = currlen;
+            }
+            currlen = 0;
+            sub = "";
+        }
+        return maxlen;
+    }
+
+    bool find(string str, char f) {
+        int i = 0;
+        while (str[i] != '\0') {
+            if (f == str[i]) {
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+};
+```
+
+## Runtime and Memory Usage
+
+![Untitled](images/Longest_Substring_Without_Repeating_Characters.png)
+
+## Notes:
+
+### Problem Assumptions:
+
+None not given, pretty straight forwaer
+
+### Solution Code:
+
+Not my proudest implementation of code, there’s probably a better algorithm I could’ve used, but O(n^3) is definitely not ideal and I need to improve the efficiency. This is a sign that I need to start studying up on my algorithms. Looking at the solution codes, I see a lot of implementations of sets, which was considered but I again struggled to figure out best implementation. Note of posterity, I was not aware of the count function.
+
+### Runtime and Memory:
+
+I know of a few ways to bring down my memory usage, which I’ll try on my second run through, but I need to be able to identify better algorithms to solve this issue. I feel like my issue is not misunderstanding of the algorithm but struggling to apply the algorithms in a relevant way.
+
+## Time Spent to Solve:
+
+26 min

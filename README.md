@@ -69,3 +69,62 @@ The Memory usage was around the same, but runtime would vary between apparently 
 
 ## Time spent to solve:
 15 min
+
+# Best Time to Buy and Sell Stock II
+
+## Problem:
+
+You are given an integer array `prices` where `prices[i]` is the price of a given stock on the `ith` day.
+
+On each day, you may decide to buy and/or sell the stock. You can only hold **at most one** share of the stock at any time. However, you can buy it then immediately sell it on the **same day**.
+
+Find and return *the **maximum** profit you can achieve*.
+
+## Found Solution:
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        if (prices.size() == 0 || prices.size() == 1) {
+            return 0;
+        }
+        int high = prices[0], total = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices[i] > high) {
+                total += (prices[i] - high);
+                high = prices[i];
+                //cout << "ADDED AT: " << i << " ";
+                //cout << "total " << total << " high " << high << endl;
+            }
+            else if (prices[i] < high) {
+                //cout << "CHANGED BUY SET FROM: " << high << " TO: " << prices[i] << endl;
+                high = prices[i];
+            }
+        }
+        return total;
+    }
+};
+```
+
+## Runtime and Memory Usage:
+
+![Untitled](Bryant%E2%80%99s%20Leetcode%20NotesRemove%20Duplicates%20from%20Sort%201307ee85a6024e17a6d751358adf910b/Untitled.png)
+
+## Notes:
+
+### Problem Assumptions:
+
+I have the knowledge of the future, not constrained to days
+
+### Solution Code:
+
+Felt like this was a decent solution, basically just iterated through the list looking for lows and highs, then replacing any lower prices with highs, selling whenever there was any profit to be had, using the greedy algorithm.
+
+### Runtime and Memory:
+
+Would’ve liked to known how I could’ve made memory usage more efficient, but I feel pretty satisfied with the runtime.
+
+## Time Spent to Solve:
+
+12 min

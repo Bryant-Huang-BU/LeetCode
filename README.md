@@ -109,7 +109,7 @@ public:
 
 ## Runtime and Memory Usage:
 
-![Untitled](Bryant%E2%80%99s%20Leetcode%20NotesRemove%20Duplicates%20from%20Sort%201307ee85a6024e17a6d751358adf910b/Untitled.png)
+![Untitled](images/Best_Time_to_Buy_and_Sell_Stock_II.png)
 
 ## Notes:
 

@@ -204,3 +204,99 @@ I know of a few ways to bring down my memory usage, which I’ll try on my secon
 ## Time Spent to Solve:
 
 26 min
+
+# Dota2 Senate (Medium)
+
+## Problem:
+
+In the world of Dota2, there are two parties: the Radiant and the Dire.
+
+The Dota2 senate consists of senators coming from two parties. Now the Senate wants to decide on a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise **one** of the two rights:
+
+- **Ban one senator's right:** A senator can make another senator lose all his rights in this and all the following rounds.
+- **Announce the victory:** If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and decide on the change in the game.
+
+Given a string `senate` representing each senator's party belonging. The character `'R'` and `'D'` represent the Radiant party and the Dire party. Then if there are `n` senators, the size of the given string will be `n`.
+
+The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
+
+Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be `"Radiant"` or `"Dire"`.
+
+## Found Solution:
+
+```
+class Solution {
+public:
+    string predictPartyVictory(string senate) {
+        string decision = "", test = senate;
+        int s = senate.size(), i = 0;
+        map<int, bool> eligible;
+        if (senate.find('D') == -1) {
+            return "Radiant";
+        }
+        else if (senate.find('R') == -1) {
+            return "Dire";
+        }
+        while (senate.find('D') != -1 && senate.find('R') != -1) {
+            if (senate[i] == 'R') {
+                int x = senate.find_first_of('D', i);
+                if (x == -1) {
+                    x = senate.find('D');
+                }
+                //cout << "found " << x << endl; 
+                senate[x] = 'X';
+                //cout << senate << endl;
+            }       
+            else if (senate[i] == 'D') {
+                int x = senate.find_first_of('R', i);
+                if (x == -1) {
+                    x = senate.find('R');
+                }
+                //cout << "found " << x << endl;
+                senate[x] = 'X';
+                //cout << senate << " " << i << endl;
+
+            }
+            if (i >= s) {
+                i = 0;
+            }
+            else {
+                i++;
+            }
+        }
+        if (senate.find('D') != -1) {
+            //cout << senate << endl;
+            //cout << senate.find('D') << endl;
+            return "Dire";
+        }
+        else {
+            cout << senate << endl;
+            return "Radiant";
+        }
+        //cout << senate << endl;
+        //return decision;
+    }
+};
+```
+
+## Runtime and Memory Usage
+
+![Untitled](images/DOTA2_Senate.png)
+
+## Notes:
+
+### Problem Assumptions:
+
+Game theory, every senator acts as best possible to win the “game”, so essentially attempting to stop the next available opposing senator
+
+### Solution Code:
+
+Went for the more naive attempt, but I felt that it wasn’t a BAD solution. It did take me a bit longer though, I would’ve finished at around the 30 min mark if I hadn’t doubted my original algorithm when I hit a heap overflow issue and started to play around with it.
+
+### Runtime and Memory:
+
+I understand the runtime issue, but I did design my code to be as memory efficient as possible, not making any copies of the string, just iterating through the original one.
+
+## Time Spent to Solve:
+
+48 min
